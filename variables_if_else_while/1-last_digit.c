@@ -3,7 +3,7 @@
 #include <time.h>
 
 /**
- * main - Print the last digit of a random number
+ * main - Print the last digit of a random number stored in n
  *
  * Return: Always 0.
  */
@@ -27,13 +27,9 @@ int main(void)
 	{
 		printf(" and is 0\n");
 	}
-	else if (last_digit < 6 && last_digit != 0 && last_digit > -6)
-	{
-		printf(" and is less than 6 and not 0\n");
-	}
 	else
 	{
-		printf("\n");
+		printf(" and is less than 6 and not 0\n");
 	}
 
 	return (0);
