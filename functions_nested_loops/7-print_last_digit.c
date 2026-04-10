@@ -8,11 +8,14 @@
  */
 int print_last_digit(int n)
 {
-	int last; /* variable that stores the last digit */
+	int last;
 
-	last = n % 10; /* modulo divides n by 10 and returns the remainder */
-	if (last < 0) /* if n is negative, the remainder will also be negative */
-		last = -last; /* convert to positive */
+	/* modulo divides n by 10 and returns the remainder */
+	last = n % 10;
+	/* if n is negative, the remainder will also be negative */
+	if (last < 0)
+		/* convert to positive */
+		last = -last;
 	_putchar('0' + last);
-	return (last); /* return the numeric value of the last digit */
+	return (last);
 }
