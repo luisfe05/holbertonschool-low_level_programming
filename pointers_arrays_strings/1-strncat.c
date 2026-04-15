@@ -16,11 +16,11 @@ char *_strncat(char *dest, char *src, int n)
 	i = 0;
 	j = 0;
 
-	/* Find the end of dest and move forward, each time the loop runs, i moves forward one position */
+	/* Find the end of dest */
 	while (dest[i] != '\0')
 		i++;
 
-	/* copies one character from src into dest and moves dest and src forward one position*/
+	/* Copy at most n bytes from src into dest */
 	while (src[j] != '\0' && j < n)
 	{
 		dest[i] = src[j];
