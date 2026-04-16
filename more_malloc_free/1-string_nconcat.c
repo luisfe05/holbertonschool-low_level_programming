@@ -12,9 +12,9 @@
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
 	char *concat;
+	char *tmp;
 	unsigned int len1;
 	unsigned int len2;
-	unsigned int i;
 	unsigned int j;
 
 	/* Treat NULL as empty string */
@@ -23,15 +23,13 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	if (s2 == 0)
 		s2 = "";
 
-	/* Find lengths of both strings */
+	/* Find lengths and cap n to len2 if needed */
 	len1 = 0;
 	len2 = 0;
 	while (s1[len1])
 		len1++;
 	while (s2[len2])
 		len2++;
-
-	/* If n is greater or equal to s2 length, use all of s2 */
 	if (n >= len2)
 		n = len2;
 
@@ -40,25 +38,17 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	if (concat == 0)
 		return (0);
 
-	/* Copy s1 into concat */
-	i = 0;
-	while (i < len1)
-	{
-		concat[i] = s1[i];
-		i++;
-	}
-
-	/* Copy n bytes of s2 right after s1 */
+	/* Copy s1 then n bytes of s2 into concat */
+	tmp = concat;
+	while (*s1)
+		*tmp++ = *s1++;
 	j = 0;
 	while (j < n)
 	{
-		concat[i] = s2[j];
-		i++;
+		*tmp++ = s2[j];
 		j++;
 	}
-
-	/* Close the string with a null byte */
-	concat[i] = '\0';
+	*tmp = '\0';
 
 	return (concat);
 }
