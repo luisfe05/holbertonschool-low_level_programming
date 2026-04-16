@@ -2,6 +2,25 @@
 #include <stdlib.h>
 
 /**
+ * str_len - returns the length of a string
+ * @s: the string to measure
+ *
+ * Return: length of the string
+ */
+int str_len(char *s)
+{
+	int len;
+
+	len = 0;
+
+	/* Count each character until the end */
+	while (s[len] != '\0')
+		len++;
+
+	return (len);
+}
+
+/**
  * str_concat - concatenates two strings into a new allocated string
  * @s1: the first string
  * @s2: the second string
@@ -22,13 +41,8 @@ char *str_concat(char *s1, char *s2)
 	if (s2 == 0)
 		s2 = "";
 
-	/* Find the length of both strings */
-	len1 = 0;
-	len2 = 0;
-	while (s1[len1] != '\0')
-		len1++;
-	while (s2[len2] != '\0')
-		len2++;
+	len1 = str_len(s1);
+	len2 = str_len(s2);
 
 	/* Allocate memory for both strings plus null byte */
 	concat = malloc(sizeof(char) * (len1 + len2 + 1));
