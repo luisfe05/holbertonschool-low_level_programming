@@ -29,7 +29,16 @@ int **alloc_grid(int width, int height)
 	{
 		grid[i] = malloc(sizeof(int) * width);
 		if (grid[i] == 0)
+		{
+			/* Free all previously allocated rows before returning */
+			while (i > 0)
+			{
+				i--;
+				free(grid[i]);
+			}
+			free(grid);
 			return (0);
+		}
 		j = 0;
 		while (j < width)
 		{
