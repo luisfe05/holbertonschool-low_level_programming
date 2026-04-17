@@ -21,14 +21,10 @@ int (*get_op_func(char *s))(int, int)
 
 	i = 0;
 
-	/* Return NULL if operator is not exactly one character */
-	if (s[0] == '\0' || s[1] != '\0')
-		return (NULL);
-
 	/* Walk through ops array looking for matching operator */
 	while (ops[i].op != NULL)
 	{
-		if (ops[i].op[0] == s[0])
+		if (ops[i].op[0] == s[0] && s[1] == '\0')
 			return (ops[i].f);
 		i++;
 	}
