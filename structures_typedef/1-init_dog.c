@@ -11,6 +11,10 @@
  */
 void init_dog(struct dog *d, char *name, float age, char *owner)
 {
+	/* Do nothing if d is NULL */
+	if (d == NULL)
+		return;
+
 	/* Set each field of the struct */
 	d->name = name;
 	d->age = age;
