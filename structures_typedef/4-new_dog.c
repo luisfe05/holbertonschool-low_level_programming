@@ -1,6 +1,45 @@
 #include "dog.h"
 #include <stdlib.h>
-#include <string.h>
+
+/**
+ * str_len - returns the length of a string
+ * @s: the string to measure
+ *
+ * Return: length of the string
+ */
+int str_len(char *s)
+{
+	int len;
+
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
+}
+
+/**
+ * str_copy - copies a string into newly allocated memory
+ * @s: the string to copy
+ *
+ * Return: pointer to the copy, or NULL on failure
+ */
+char *str_copy(char *s)
+{
+	char *copy;
+	int i;
+
+	copy = malloc(str_len(s) + 1);
+	if (copy == NULL)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		copy[i] = s[i];
+		i++;
+	}
+	copy[i] = '\0';
+	return (copy);
+}
 
 /**
  * new_dog - creates a new dog
@@ -20,26 +59,22 @@ dog_t *new_dog(char *name, float age, char *owner)
 		return (NULL);
 
 	/* Allocate and copy name */
-	dog->name = malloc(strlen(name) + 1);
+	dog->name = str_copy(name);
 	if (dog->name == NULL)
 	{
 		free(dog);
 		return (NULL);
 	}
-	strcpy(dog->name, name);
 
 	/* Allocate and copy owner */
-	dog->owner = malloc(strlen(owner) + 1);
+	dog->owner = str_copy(owner);
 	if (dog->owner == NULL)
 	{
 		free(dog->name);
 		free(dog);
 		return (NULL);
 	}
-	strcpy(dog->owner, owner);
 
-	/* Set age */
 	dog->age = age;
-
 	return (dog);
 }
