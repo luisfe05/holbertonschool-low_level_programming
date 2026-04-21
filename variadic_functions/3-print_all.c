@@ -2,17 +2,6 @@
 #include <stdio.h>
 
 /**
- * struct type_s - pairs a format char with a print function
- * @c: the format character
- * @f: the function to call for this type
- */
-typedef struct type_s
-{
-	char c;
-	void (*f)(va_list *);
-} type_t;
-
-/**
  * print_c - prints a char from args
  * @args: pointer to the argument list
  */
