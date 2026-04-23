@@ -26,27 +26,21 @@ void close_fd(int fd)
  */
 int main(int argc, char *argv[])
 {
-	int fd_from;
-	int fd_to;
+	int fd_from, fd_to;
 	char buf[1024];
-	ssize_t r;
-	ssize_t w;
+	ssize_t r, w;
 
 	if (argc != 3)
 	{
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-
-	/* Open file_from for reading */
 	fd_from = open(argv[1], O_RDONLY);
 	if (fd_from == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 		exit(98);
 	}
-
-	/* Open file_to for writing - create or truncate - rw-rw-r-- */
 	fd_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	if (fd_to == -1)
 	{
@@ -54,8 +48,6 @@ int main(int argc, char *argv[])
 		close_fd(fd_from);
 		exit(99);
 	}
-
-	/* Read 1024 bytes at a time and write to file_to */
 	while ((r = read(fd_from, buf, 1024)) > 0)
 	{
 		w = write(fd_to, buf, r);
@@ -67,7 +59,6 @@ int main(int argc, char *argv[])
 			exit(99);
 		}
 	}
-
 	if (r == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
@@ -75,9 +66,7 @@ int main(int argc, char *argv[])
 		close_fd(fd_to);
 		exit(98);
 	}
-
 	close_fd(fd_from);
 	close_fd(fd_to);
-
 	return (0);
 }
