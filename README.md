@@ -25,4 +25,4 @@ Collection of Holberton School projects covering low-level programming in C.
 
 ## Author
 
-Luis — Holberton School
+Luis Gonzalez — Holberton School
